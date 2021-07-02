@@ -1,0 +1,104 @@
+<!--
+  ~ Copyright (c) 2021. Ou Yubin
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<idea-plugin>
+    <id>cn.shanghai.oyb.compileflow</id>
+    <name>阿里巴巴CompileFlow设计器</name>
+    <vendor email="82324767@qq.com" url="">偶玉彬</vendor>
+
+    <description><![CDATA[
+        Alibaba Compileflow Flow设计器
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+<!--    <depends>com.intellij.modules.java</depends>-->
+
+    <extensionPoints>
+        <extensionPoint name="propertyPage"
+                        beanClass="cn.shanghai.oyb.compileflow.window.properties.api.CompileFlowPropertyPageEP">
+            <with></with>
+        </extensionPoint>
+    </extensionPoints>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileEditorProvider implementation="cn.shanghai.oyb.compileflow.editor.providers.CompileFlowGraphFileEditorProvider"/>
+        <fileEditorProvider implementation="cn.shanghai.oyb.compileflow.editor.providers.CompileFlowClassFileEditorProvider"/>
+        <fileTypeFactory implementation="cn.shanghai.oyb.compileflow.resource.filetype.factory.CompileFlowFileTypeFactory"/>
+        <fileTemplateGroup
+                implementation="cn.shanghai.oyb.compileflow.resource.template.factory.CompileFlowFileTemplateGroupDescriptorFactory"/>
+        <dom.fileDescription implementation="cn.shanghai.oyb.compileflow.resource.description.CompileFlowDomFileDescription"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="cn.shanghai.oyb.compileflow">
+        <propertyPage id="bpmPropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowBpmBasePropertyPage"
+                      mappingName="bpm"/>
+        <propertyPage id="startPropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowStartBasePropertyPage"
+                      mappingName="start"/>
+        <propertyPage id="endPropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowEndBasePropertyPage"
+                      mappingName="end"/>
+        <propertyPage id="decisionPropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowDecisionBasePropertyPage"
+                      mappingName="decision"/>
+        <propertyPage id="transitionPropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowTransitionBasePropertyPage"
+                      mappingName="transition" ownerName="decision"/>
+        <propertyPage id="scriptPropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowScriptBasePropertyPage"
+                      mappingName="scriptTask"/>
+        <propertyPage id="subBpmPropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowSubBpmBasePropertyPage"
+                      mappingName="subBpm"/>
+        <propertyPage id="autoTaskPropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowAutoTaskBasePropertyPage"
+                      mappingName="autoTask"/>
+        <propertyPage id="nodePropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowNoteBasePropertyPage"
+                      mappingName="note"/>
+        <propertyPage id="continuePropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowContinueBasePropertyPage"
+                      mappingName="continue"/>
+        <propertypage id="breakPropertyPage"
+                      implementclass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowBreakBasePropertyPage"
+                      mappingname="break"/>
+        <propertyPage id="loopPropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowLoopProcessBasePropertyPage"
+                      mappingName="loopProcess"/>
+    </extensions>
+
+    <project-components>
+        <component>
+            <implementation-class>cn.shanghai.oyb.compileflow.window.palette.manager.CompileFlowPaletteToolWindowManager
+            </implementation-class>
+        </component>
+        <component>
+            <implementation-class>cn.shanghai.oyb.compileflow.window.properties.manager.CompileFlowPropertiesToolWindowManager
+            </implementation-class>
+        </component>
+    </project-components>
+
+    <actions>
+        <action id="cn.shanghai.oyb.compileflow.editor.actions.CreateCompileFlowFileAction"
+                class="cn.shanghai.oyb.compileflow.editor.actions.CreateCompileFlowFileAction" popup="true">
+            <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFile"/>
+        </action>
+    </actions>
+</idea-plugin>

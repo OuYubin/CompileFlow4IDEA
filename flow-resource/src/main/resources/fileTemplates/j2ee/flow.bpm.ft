@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpm name="${NAME}" type="process" code="${PACKAGE_NAME}.${NAME}" description="CompileFlow配置">
+    <start id="0" name="开始" g="150,150" ></start>
+</bpm>
