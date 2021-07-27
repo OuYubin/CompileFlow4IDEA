@@ -74,7 +74,6 @@ class CompileFlowPropertiesToolWindowManager(project: Project, fileEditorManager
     val contentManager: ContentManager = toolWindow.getContentManager
     val content: Content = contentManager.getFactory.createContent(toolWindowContent.getToolWindowContentPanel, "Compile Flow属性", false)
     content.setCloseable(false)
-    //content.setPreferredFocusableComponent(doradoToolWindowContent.getComponentTree)
     contentManager.addContent(content)
     contentManager.setSelectedContent(content, true)
     toolWindow.setAvailable(true, null)

@@ -78,7 +78,6 @@ abstract class AbstractToolWindowManager(val project: Project, val fileEditorMan
 
 
   override def projectOpened {
-    initToolWindow
     StartupManager.getInstance(project).registerPostStartupActivity(new Runnable {
       def run {
         myToolWindowReady = true

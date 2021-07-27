@@ -208,12 +208,12 @@ abstract class AbstractGraphEditPanel(@BeanProperty val editor: TGraphFileEditor
     //--将编辑器附属的两个子窗口通过事件分派线程完成操作,达到界面流畅运行
     UIUtil.invokeLaterIfNeeded(new Runnable {
       def run {
-        val editPanel: TGraphicEditPanel = AbstractGraphEditPanel.this
+        //val editPanel: TGraphicEditPanel = AbstractGraphEditPanel.this
         //--通过属性窗体管理类完成编辑器与属性工具窗体的绑定
         //--通过复写getPropertyToolWindowManager来完成子类个性化的属性设计器
-        getPropertyToolWindowManager.bindToEditPanel(editPanel)
+        //getPropertyToolWindowManager.bindToEditPanel(editPanel)
         //--通过调色版窗体管理类完成编辑器与调色板工具窗体的绑定
-        //getPaletteWindowManager.bind(designer)
+        //getPaletteToolWindowManager.bindToEditPanel(editPanel)
       }
     })
   }

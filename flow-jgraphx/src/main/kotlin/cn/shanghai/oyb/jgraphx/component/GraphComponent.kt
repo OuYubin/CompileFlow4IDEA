@@ -50,7 +50,7 @@ open class GraphComponent : mxGraphComponent {
         super.setGridColor(JBColor(Color(253, 245, 230), Color(80, 80, 80)))
         //--使其不透明
         super.setOpaque(true)
-        //super.setBackground(Color.WHITE)
+        super.setBackground(Color.WHITE)
         super.setAutoScroll(false)
         super.setPreferPageSize(false)
         super.setPreviewAlpha(80f)

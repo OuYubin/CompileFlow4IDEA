@@ -78,7 +78,7 @@ public class CompileFlowPropertiesToolWindowContent extends CommonToolWindowCont
             mxGraphComponent.mxGraphControl control = (mxGraphComponent.mxGraphControl) ((ComponentEvent) event).getSource();
             Object object = control.getGraphContainer().getGraph().getSelectionCell();
             if (object != null && this.getPropertiesPage() != null) {
-                LOG.info("🚀触发对象: " + object.toString());
+                LOG.info("🚀触发对象: " + object);
                 if (object instanceof BaseCell) {
                     this.getPropertiesPage().refresh((BaseCell) object);
                 }

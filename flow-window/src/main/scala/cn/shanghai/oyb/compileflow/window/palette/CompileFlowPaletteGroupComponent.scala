@@ -128,7 +128,7 @@ class CompileFlowPaletteGroupComponent(group: CompileFlowPaletteGroup) extends J
   override protected def paintComponent(g: Graphics): Unit = {
     super.paintComponent(g)
     var xInset = 2
-    var yInset = 1
+    var yInset = 3
     if (SystemInfo.isWindows) {
       xInset = 1
     } else if (SystemInfo.isMac) {
