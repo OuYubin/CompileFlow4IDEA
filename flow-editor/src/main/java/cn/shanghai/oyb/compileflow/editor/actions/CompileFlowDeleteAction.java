@@ -30,9 +30,13 @@ import cn.shanghai.oyb.jgraphx.model.Cell;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.IdeActions;
 import com.intellij.openapi.keymap.KeymapUtil;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.newvfs.RefreshQueue;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -47,7 +51,8 @@ public class CompileFlowDeleteAction extends CommonAction {
     }
 
     @Override
-    public void actionPerformed(@NotNull AnActionEvent e) {
+    public void actionPerformed(@NotNull AnActionEvent event) {
+        super.actionPerformed(event);
         Cell cell = getCell();
         XmlTagModelElement child = (XmlTagModelElement) (getCell()).getValue();
         XmlTagModelElement parent = null;

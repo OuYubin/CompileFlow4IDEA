@@ -16,11 +16,12 @@
 package cn.shanghai.oyb.flow.core.editor.commands
 
 import cn.shanghai.oyb.flow.core.editor.commands.listeners.TCommandStackListener
-
 import java.util
 import java.util.EventObject
+
 import com.intellij.openapi.command.{CommandProcessor, UndoConfirmationPolicy, WriteCommandAction}
 import com.intellij.openapi.diagnostic.Logger
+import com.intellij.openapi.vfs.newvfs.RefreshQueue
 
 import scala.beans.BeanProperty
 import scala.collection.JavaConversions._

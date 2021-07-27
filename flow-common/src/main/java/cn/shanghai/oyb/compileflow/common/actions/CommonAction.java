@@ -21,9 +21,12 @@ import com.intellij.openapi.actionSystem.DataKey;
 import cn.shanghai.oyb.flow.core.editor.models.cells.BaseCell;
 import cn.shanghai.oyb.flow.core.internal.TAdaptable;
 import cn.shanghai.oyb.jgraphx.graph.Graph;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.newvfs.RefreshQueue;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,8 +58,12 @@ public class CommonAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        Graph ltfGraph = (Graph) getAdapter().getAdapter(Graph.class);
-        ltfGraph.clearSelection();
+        VirtualFile virtualFileFile = (VirtualFile) getAdapter().getAdapter(VirtualFile.class);
+        List<VirtualFile> files = new ArrayList<>();
+        files.add(virtualFileFile);
+        RefreshQueue.getInstance().refresh(true, true, null, files);
+//        Graph graph = (Graph) getAdapter().getAdapter(Graph.class);
+//        graph.clearSelection();
     }
 
     public BaseCell getCell() {

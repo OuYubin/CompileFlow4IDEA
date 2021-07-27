@@ -48,8 +48,10 @@ abstract class AbstractGraphFileEditor(val project: Project, val file: VirtualFi
   val LOG: Logger = Logger.getInstance("#" + AbstractGraphFileEditor.this.getClass.getName)
 
   var originalFile: VirtualFile = file
-  if (file.isInstanceOf[LightVirtualFile]) {
-    originalFile = (file.asInstanceOf[LightVirtualFile]).getOriginalFile
+  file match {
+    case file: LightVirtualFile =>
+      originalFile = file.getOriginalFile
+    case _ =>
   }
   val module: Module = findModule(project, originalFile)
   if (module == null) {
@@ -57,15 +59,15 @@ abstract class AbstractGraphFileEditor(val project: Project, val file: VirtualFi
   }
 
   //--子类中完成自定义模型工厂构建
-  val lftModelFactory = createModelFactory
+  val modelFactory: TModelElementFactory = createModelFactory
 
 
   //--设计器面板,需要在子类中集中实现
-  val graphicEditorPanel = createGraphicEditorPanel(project, module, file)
+  val graphicEditorPanel: TGraphicEditPanel = createGraphicEditorPanel(project, module, file)
 
 
   //--构建图形编辑域,用于控制编辑命令管理,同时命令执行结束后触发监听控制编辑器在整个环境中的状态控制,如编辑保存,撤销,重做状态等
-  @BeanProperty val editDomain = initEditDomain
+  @BeanProperty val editDomain: GraphEditDomain = initEditDomain
 
   override def getGraphicEditorPanel: TGraphicEditPanel = {
     graphicEditorPanel
@@ -186,7 +188,9 @@ abstract class AbstractGraphFileEditor(val project: Project, val file: VirtualFi
     } else if (adapter == classOf[Project]) {
       project
     } else if (adapter == classOf[TModelElementFactory]) {
-      lftModelFactory
+      modelFactory
+    } else if (adapter==classOf[VirtualFile]){
+      getFile
     }
   }
 }
