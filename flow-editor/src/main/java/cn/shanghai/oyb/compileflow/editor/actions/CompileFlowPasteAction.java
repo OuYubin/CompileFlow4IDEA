@@ -58,7 +58,8 @@ public class CompileFlowPasteAction extends CommonAction {
     }
 
     @Override
-    public void actionPerformed(@NotNull AnActionEvent e) {
+    public void actionPerformed(@NotNull AnActionEvent event) {
+        super.actionPerformed(event);
         GraphEditDomain editDomain = (GraphEditDomain) getAdapter().getAdapter(GraphEditDomain.class);
         GraphEditCommandStack commandStack = editDomain.getCommandStack();
         if (selectCell != null) {

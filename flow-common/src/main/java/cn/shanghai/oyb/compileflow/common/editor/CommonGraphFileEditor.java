@@ -23,11 +23,9 @@ import cn.shanghai.oyb.flow.core.models.factory.TModelElementFactory;
 import com.intellij.codeHighlighting.BackgroundEditorHighlighter;
 import com.intellij.openapi.command.CommandEvent;
 import com.intellij.openapi.command.CommandListener;
-import com.intellij.openapi.command.undo.UndoManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.messages.MessageBusConnection;
 import org.apache.commons.lang.StringUtils;
@@ -91,11 +89,6 @@ public class CommonGraphFileEditor extends AbstractGraphFileEditor {
     @Nullable
     @Override
     public BackgroundEditorHighlighter getBackgroundHighlighter() {
-        return null;
-    }
-
-    @Override
-    public VirtualFile file() {
         return null;
     }
 
