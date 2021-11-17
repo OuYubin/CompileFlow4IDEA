@@ -19,8 +19,8 @@ import cn.shanghai.oyb.compileflow.editor.cells.CompileFlowElementCell;
 import cn.shanghai.oyb.compileflow.editor.commands.CompileFlowConnectionRemoveCommand;
 import cn.shanghai.oyb.compileflow.editor.commands.CompileFlowRemoveCommand;
 import cn.shanghai.oyb.compileflow.editor.edges.CompileFlowTransitionEdge;
-import cn.shanghai.oyb.flow.core.editor.commands.GraphEditCommandStack;
 import cn.shanghai.oyb.flow.core.editor.commands.GraphEditCommand;
+import cn.shanghai.oyb.flow.core.editor.commands.GraphEditCommandStack;
 import cn.shanghai.oyb.flow.core.editor.commands.TGraphEditCommand;
 import cn.shanghai.oyb.flow.core.editor.editdomain.GraphEditDomain;
 import cn.shanghai.oyb.flow.core.internal.TAdaptable;
@@ -29,9 +29,13 @@ import cn.shanghai.oyb.jgraphx.graph.Graph;
 import com.intellij.ide.DeleteProvider;
 import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.newvfs.RefreshQueue;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author ouyubin
@@ -51,6 +55,10 @@ public class CompileFlowDeleteProvider implements DeleteProvider {
      */
     @Override
     public void deleteElement(@NotNull DataContext dataContext) {
+        VirtualFile virtualFileFile = (VirtualFile) adapter.getAdapter(VirtualFile.class);
+        List<VirtualFile> files = new ArrayList<>();
+        files.add(virtualFileFile);
+        RefreshQueue.getInstance().refresh(true, true, null, files);
         Graph compileFlowGraph = (Graph) adapter.getAdapter(Graph.class);
         GraphEditDomain editDomain = (GraphEditDomain) adapter.getAdapter(GraphEditDomain.class);
         GraphEditCommandStack commandStack = editDomain.getCommandStack();
@@ -60,9 +68,9 @@ public class CompileFlowDeleteProvider implements DeleteProvider {
                 XmlTagModelElement flowXmlTagElement =
                         (XmlTagModelElement) ((CompileFlowElementCell) cell).getValue();
                 XmlTagModelElement parent = (XmlTagModelElement) ((CompileFlowElementCell) cell).getMyEditPart().getParentEditPart().getModel();
-                TGraphEditCommand lftCommand = new CompileFlowRemoveCommand(adapter,
-                        parent, flowXmlTagElement.getXmlTag(), (CompileFlowElementCell) cell);
-                commandStack.execute(lftCommand);
+                TGraphEditCommand command = new CompileFlowRemoveCommand(adapter,
+                        parent, flowXmlTagElement, (CompileFlowElementCell) cell);
+                commandStack.execute(command);
             } else if (cell instanceof CompileFlowTransitionEdge) {
 //                FlowTransitionEdge flowXmlTagElement =
 //                        (FlowTransitionEdge) ((FlowTransitionEdge) cell).getValue();

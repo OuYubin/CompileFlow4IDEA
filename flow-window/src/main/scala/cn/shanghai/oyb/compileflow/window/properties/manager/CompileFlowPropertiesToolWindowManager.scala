@@ -36,13 +36,13 @@ import icons.CompileFlowIcons
  */
 object CompileFlowPropertiesToolWindowManager {
 
-  def getInstance(editorPanel: TGraphicEditPanel): TToolWindowContent = {
-    val manager: CompileFlowPropertiesToolWindowManager = getInstance(editorPanel.getProject)
-    if (manager.isEditorMode) {
-      return manager.getContent(editorPanel).asInstanceOf[CompileFlowPropertiesToolWindowContent]
-    }
-    manager.toolWindowContent
-  }
+//  def getInstance(editorPanel: TGraphicEditPanel): TToolWindowContent = {
+//    val manager: CompileFlowPropertiesToolWindowManager = getInstance(editorPanel.getProject)
+//    if (manager.isEditorMode) {
+//      return manager.getContent(editorPanel).asInstanceOf[CompileFlowPropertiesToolWindowContent]
+//    }
+//    manager.toolWindowContent
+//  }
 
   def getInstance(project: Project): CompileFlowPropertiesToolWindowManager = {
     project.getComponent(classOf[CompileFlowPropertiesToolWindowManager])

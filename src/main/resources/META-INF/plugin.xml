@@ -76,8 +76,8 @@
         <propertyPage id="continuePropertyPage"
                       implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowContinueBasePropertyPage"
                       mappingName="continue"/>
-        <propertypage id="breakPropertyPage"
-                      implementclass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowBreakBasePropertyPage"
+        <propertyPage id="breakPropertyPage"
+                      implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowBreakBasePropertyPage"
                       mappingname="break"/>
         <propertyPage id="loopPropertyPage"
                       implementClass="cn.shanghai.oyb.compileflow.window.properties.pages.CompileFlowLoopProcessBasePropertyPage"
@@ -86,12 +86,10 @@
 
     <project-components>
         <component>
-            <implementation-class>cn.shanghai.oyb.compileflow.window.palette.manager.CompileFlowPaletteToolWindowManager
-            </implementation-class>
+            <implementation-class>cn.shanghai.oyb.compileflow.window.palette.manager.CompileFlowPaletteToolWindowManager</implementation-class>
         </component>
         <component>
-            <implementation-class>cn.shanghai.oyb.compileflow.window.properties.manager.CompileFlowPropertiesToolWindowManager
-            </implementation-class>
+            <implementation-class>cn.shanghai.oyb.compileflow.window.properties.manager.CompileFlowPropertiesToolWindowManager</implementation-class>
         </component>
     </project-components>
 

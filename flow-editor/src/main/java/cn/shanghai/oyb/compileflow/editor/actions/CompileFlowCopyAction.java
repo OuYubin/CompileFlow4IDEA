@@ -36,7 +36,7 @@ import java.util.ArrayList;
  */
 public class CompileFlowCopyAction extends CommonAction {
 
-    Logger LOG = Logger.getInstance(CompileFlowCopyAction.class);
+    private static final Logger LOG = Logger.getInstance(CompileFlowCopyAction.class);
 
     public CompileFlowCopyAction(BaseCell cell, TAdaptable adapter, String text, String description, Icon icon) {
         super(cell, adapter, text, description, icon);

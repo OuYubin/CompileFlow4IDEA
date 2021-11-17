@@ -29,7 +29,6 @@ import com.intellij.psi.xml.XmlTag;
  */
 public class XmlElementUtil {
 
-
     public static void readComponentFile(XmlFile xmlFile, XmlRecursiveElementVisitor visitor) {
         ApplicationManager.getApplication().runReadAction((Computable<String>) () -> {
                     XmlTag root = xmlFile.getRootTag();
